@@ -2,8 +2,9 @@
 	<view>
 		<!-- 使用自定义的搜索组件 -->
 		<!-- <my-search :bgcolor="'pink'" :radius="3"></my-search> -->
-		<my-search @click="gotoSearch"></my-search>
-
+		<!-- 使用默认的搜索组件 -->
+			<my-search @click="gotoSearch"></my-search>
+	
 		<view class="scroll-view-container">
 			<!-- 左侧的滑动区域 -->
 			<scroll-view class="left-scroll-view" scroll-y="true" :style="{height: wh + 'px'}">
@@ -86,10 +87,10 @@
 					url: '/subPackages/goods_list/goods_list?cid=' + item.cat_id
 				})
 			},
-
+			// 搜索框的点击事件
 			gotoSearch() {
 				uni.navigateTo({
-					url: '/subPacjages/search/search'
+					url: '/subPackages/search/search'
 				})
 			}
 		}
