@@ -4,7 +4,7 @@
 		<view class="search-box">
 			<my-search @click="gotoSearch"></my-search>
 		</view>
-		
+
 		<!-- 轮播图 -->
 		<swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000" :current="true">
 			<swiper-item v-for="(item, index) in swiperList" :key="index">
@@ -29,17 +29,20 @@
 				<!-- 楼层标题 -->
 				<image :src="item.floor_title.image_src" class="floor-title"></image>
 				<!-- 楼层图片 -->
-					<view class="floor-img-box">
-						<!-- 左侧大图片的盒子 -->
-						<navigator class="left-img-box" :url="item.product_list[0].url">
-							<image :src="item.product_list[0].image_src" mode="widthFix" :style="{width: item.product_list[0].image_width + 'rpx'}"></image>
+				<view class="floor-img-box">
+					<!-- 左侧大图片的盒子 -->
+					<navigator class="left-img-box" :url="item.product_list[0].url">
+						<image :src="item.product_list[0].image_src" mode="widthFix"
+							:style="{width: item.product_list[0].image_width + 'rpx'}"></image>
+					</navigator>
+					<!-- 右侧图片的盒子 -->
+					<view class="right-img-box">
+						<navigator class="right-img-item" v-for="(item2, index2) in item.product_list" :key="index2"
+							v-if="index2 !== 0" :url="item2.url">
+							<image :src="item2.image_src" mode="widthFix" :style="{width: item2.image_width + 'rpx'}">
+							</image>
 						</navigator>
-						<!-- 右侧图片的盒子 -->
-						<view class="right-img-box">
-							<navigator class="right-img-item" v-for="(item2, index2) in item.product_list" :key="index2" v-if="index2 !== 0" :url="item2.url">
-								<image :src="item2.image_src" mode="widthFix" :style="{width: item2.image_width + 'rpx'}"></image>
-							</navigator>
-						</view>
+					</view>
 				</view>
 			</view>
 		</view>
@@ -47,7 +50,12 @@
 </template>
 
 <script>
+	// 导入自己封装的 mixin 模块
+	import badgeMix from '@/mixins/tabbar-badge.js'
+
 	export default {
+		// 将 badgeMix 混入到当前的页面中进行使用
+		mixins: [badgeMix],
 		data() {
 			return {
 				// 轮播图数据列表
@@ -101,10 +109,11 @@
 					// 对数据进行处理
 					result.data.message.forEach(floor => {
 						floor.product_list.forEach(prod => {
-							prod.url = '/subPackages/goods_list/goods_list?' + prod.navigator_url.split('?')[1]
+							prod.url = '/subPackages/goods_list/goods_list?' + prod.navigator_url
+								.split('?')[1]
 						})
 					})
-					
+
 					this.floorList = result.data.message
 				} else {
 					return uni.$showMsg()
@@ -150,21 +159,21 @@
 		width: 100%;
 		display: flex;
 	}
-	
+
 	// 楼层右侧图片
-	.right-img-box{
+	.right-img-box {
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-around;
 	}
-	
-	.floor-img-box{
+
+	.floor-img-box {
 		display: flex;
 		padding-left: 10rpx;
 	}
-	
+
 	// 搜索框吸顶效果
-	.search-box{
+	.search-box {
 		// 设置定位效果为"吸顶"
 		position: sticky;
 		// 吸顶位置

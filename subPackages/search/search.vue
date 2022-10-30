@@ -6,7 +6,7 @@
 		</view>
 		<!-- 搜索建议列表 -->
 		<view class="sugg-list" v-if="searchResults.length !== 0">
-			<view class="sugg-item" v-for="(item, index) in searchResults" :key="index" @click="gotoDatail(item)">
+			<view class="sugg-item" v-for="(item, index) in searchResults" :key="index" @click="gotoDetail(item)">
 				<view class="goods-name">{{item.goods_name}}</view>
 				<uni-icons type="arrowright" size="16"></uni-icons>
 			</view>
@@ -78,7 +78,7 @@
 				// console.log(result);
 			},
 			// 点击搜索建议列表item项跳转到详情页面
-			gotoDatail(item) {
+			gotoDetail(item) {
 				// console.log(item.goods_id);
 				uni.navigateTo({
 					url: '/subPackages/goods_detail/goods_detail?goods_id=' + item.goods_id

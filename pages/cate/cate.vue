@@ -3,14 +3,15 @@
 		<!-- 使用自定义的搜索组件 -->
 		<!-- <my-search :bgcolor="'pink'" :radius="3"></my-search> -->
 		<!-- 使用默认的搜索组件 -->
-			<my-search @click="gotoSearch"></my-search>
-	
+		<my-search @click="gotoSearch"></my-search>
+
 		<view class="scroll-view-container">
 			<!-- 左侧的滑动区域 -->
 			<scroll-view class="left-scroll-view" scroll-y="true" :style="{height: wh + 'px'}">
 				<block v-for="(item, i) in cateList" :key="i">
 					<view :class="['left-scroll-view-item', i === active ? 'active' : '']" @click="activeChanged(i)">
-						{{item.cat_name}}</view>
+						{{item.cat_name}}
+					</view>
 				</block>
 			</scroll-view>
 			<!-- 右侧的滑动区域 -->
@@ -36,7 +37,12 @@
 </template>
 
 <script>
-	export default {
+// 导入自己封装的 mixin 模块
+import badgeMix from '@/mixins/tabbar-badge.js'
+
+export default {
+  // 将 badgeMix 混入到当前的页面中进行使用
+  mixins: [badgeMix],
 		data() {
 			return {
 				// 当前设备可用的高度

@@ -3,6 +3,6 @@
 
 
 "@escook/request-miniprogram@^0.2.1":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@escook/request-miniprogram/-/request-miniprogram-0.2.1.tgz#c3b13249f5a94601f2949f4d68245df9a5683819"
-  integrity sha512-ueWV5YsaEm/ycQZuEjMiA88GFMhfBQSjy9GrP9omy4xAQajkGTbYIlnhzsDfWzRPmRC1fKmAiKMrCVcgS+SHcQ==
+  "integrity" "sha512-ueWV5YsaEm/ycQZuEjMiA88GFMhfBQSjy9GrP9omy4xAQajkGTbYIlnhzsDfWzRPmRC1fKmAiKMrCVcgS+SHcQ=="
+  "resolved" "https://registry.npmjs.org/@escook/request-miniprogram/-/request-miniprogram-0.2.1.tgz"
+  "version" "0.2.1"
